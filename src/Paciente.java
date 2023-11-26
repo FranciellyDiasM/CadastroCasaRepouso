@@ -47,6 +47,6 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return String.format("%s\t%s\t%s\t%s\t%s\n", nome, anoNascimento, genero, alergia, telefoneResponsavel);
+        return String.format("%s|%s|%s|%s|%s\n", nome, anoNascimento, genero, alergia, telefoneResponsavel);
     }
 }

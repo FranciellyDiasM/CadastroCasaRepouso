@@ -38,6 +38,6 @@ public class Quarto {
 
     @Override
     public String toString() {
-        return String.format("%s\t%s\t%s\t%s\n", numero, tipo, comodidades, status);
+        return String.format("%s|%s|%s|%s\n", numero, tipo, comodidades, status);
     }
 }
