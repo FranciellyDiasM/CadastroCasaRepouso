@@ -47,7 +47,7 @@ public class Main {
                 insereQuarto();
                 break;
             case 2:
-                System.out.println("Buscar Quarto");
+                buscaQuarto();
                 break;
             case 3:
                 System.out.println("Alterar Quarto");
@@ -62,26 +62,36 @@ public class Main {
     }
 
     private static void insereQuarto() {
-        Quarto quarto = new Quarto();
-
         System.out.println("Informe o numero do quarto: ");
         int numero = scanner.nextInt();
         scanner.nextLine();  // corrige bug
-        quarto.setNumero(numero);
 
-        System.out.println("Informe o tipo de quarto(Basico, UTI, PHC...)");
+        System.out.println("Informe o tipo de quarto(Basico, UTI, PCD...)");
         String tipo = scanner.nextLine();
-        quarto.setTipo(tipo);
 
         System.out.println("Informe as comidades(Wi-fi, Suite, TV, Frigobar)");
         String comodidades = scanner.nextLine();
-        quarto.setComodidades(comodidades);
 
         System.out.println("Informe o status do quarto(Disponível, Manutenção, Limpeza, Reservado, Indisponível)");
         String status = scanner.nextLine();
-        quarto.setStatus(status);
 
+        Quarto quarto = new Quarto(numero, tipo, comodidades, status);
         bancoDeDados.insere(quarto);
+    }
+
+
+    private static void buscaQuarto() {
+        System.out.println("Informe o número do quarto: ");
+        int numero = scanner.nextInt();
+        scanner.nextLine();  // corrige bug
+
+        Quarto quarto = bancoDeDados.buscaQuarto(numero);
+
+        if(quarto == null) {
+            System.out.println("Quarto de número " + numero + " não esta cadastrado");
+        } else {
+            System.out.println(quarto.textoBonito());
+        }
     }
 
     private static void menuPaciente() {

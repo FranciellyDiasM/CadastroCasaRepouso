@@ -4,6 +4,13 @@ public class Quarto {
     private String comodidades;
     private String status;
 
+    public Quarto(int numero, String tipo, String comodidades, String status) {
+        this.numero = numero;
+        this.tipo = tipo;
+        this.comodidades = comodidades;
+        this.status = status;
+    }
+
     public int getNumero() {
         return numero;
     }
@@ -34,6 +41,10 @@ public class Quarto {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String textoBonito() {
+        return String.format("Número: %s\nTipo: %s\nComodidades: %s\nStatus: %s", numero, tipo, comodidades, status);
     }
 
     @Override
