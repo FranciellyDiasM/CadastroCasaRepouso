@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
 public class Main {
-
-
     private static Scanner scanner = new Scanner(System.in);
+    private static BancoDeDados bancoDeDados = new BancoDeDados();
 
     public static void main(String[] args) {
         int opcao;
@@ -45,7 +44,7 @@ public class Main {
 
         switch (operacao) {
             case 1:
-                System.out.println("Inserir Quarto");
+                insereQuarto();
                 break;
             case 2:
                 System.out.println("Buscar Quarto");
@@ -60,6 +59,29 @@ public class Main {
                 System.out.println("Opção inválida");
                 break;
         }
+    }
+
+    private static void insereQuarto() {
+        Quarto quarto = new Quarto();
+
+        System.out.println("Informe o numero do quarto: ");
+        int numero = scanner.nextInt();
+        scanner.nextLine();  // corrige bug
+        quarto.setNumero(numero);
+
+        System.out.println("Informe o tipo de quarto(Basico, UTI, PHC...)");
+        String tipo = scanner.nextLine();
+        quarto.setTipo(tipo);
+
+        System.out.println("Informe as comidades(Wi-fi, Suite, TV, Frigobar)");
+        String comodidades = scanner.nextLine();
+        quarto.setComodidades(comodidades);
+
+        System.out.println("Informe o status do quarto(Disponível, Manutenção, Limpeza, Reservado, Indisponível)");
+        String status = scanner.nextLine();
+        quarto.setStatus(status);
+
+        bancoDeDados.insere(quarto);
     }
 
     private static void menuPaciente() {

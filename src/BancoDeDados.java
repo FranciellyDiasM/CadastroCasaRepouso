@@ -43,4 +43,15 @@ public class BancoDeDados {
             }
         }
     }
+
+    public void insere(Quarto quarto) {
+        try {
+            BufferedWriter escrita = new BufferedWriter(new FileWriter(arquivoQuartos, true));
+            escrita.write(quarto.toString());
+            escrita.flush();
+            escrita.close();
+        } catch (Exception e) {
+            System.out.println("\nErro de gravacao!");
+        }
+    }
 }
