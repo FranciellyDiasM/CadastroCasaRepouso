@@ -4,6 +4,7 @@ public class Paciente {
     private String genero;
     private String alergia;
     private String telefoneResponsavel;
+    private int numeroQuarto;
 
     public String getNome() {
         return nome;
@@ -45,8 +46,16 @@ public class Paciente {
         this.telefoneResponsavel = telefoneResponsavel;
     }
 
+    public int getNumeroQuarto() {
+        return numeroQuarto;
+    }
+
+    public void setNumeroQuarto(int numeroQuarto) {
+        this.numeroQuarto = numeroQuarto;
+    }
+
     @Override
     public String toString() {
-        return String.format("%s|%s|%s|%s|%s\n", nome, anoNascimento, genero, alergia, telefoneResponsavel);
+        return String.format("%s|%s|%s|%s|%s|%s\n", nome, anoNascimento, genero, alergia, telefoneResponsavel, numeroQuarto);
     }
 }
