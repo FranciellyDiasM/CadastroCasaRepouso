@@ -50,7 +50,7 @@ public class Main {
                 buscaQuarto();
                 break;
             case 3:
-                System.out.println("Alterar Quarto");
+                alteraQuarto();
                 break;
             case 4:
                 System.out.println("Excluir Quarto");
@@ -79,7 +79,6 @@ public class Main {
         bancoDeDados.insere(quarto);
     }
 
-
     private static void buscaQuarto() {
         System.out.println("Informe o número do quarto: ");
         int numero = scanner.nextInt();
@@ -91,6 +90,26 @@ public class Main {
             System.out.println("Quarto de número " + numero + " não esta cadastrado");
         } else {
             System.out.println(quarto.textoBonito());
+        }
+    }
+
+    private static void alteraQuarto() {
+        System.out.println("Informe o número do quarto: ");
+        int numero = scanner.nextInt();
+        scanner.nextLine();  // corrige bug
+
+        Quarto quarto = bancoDeDados.buscaQuarto(numero);
+
+        if(quarto == null) {
+            System.out.println("Quarto de número " + numero + " não esta cadastrado");
+        } else {
+            System.out.println(String.format("Encontramos o quarto:\n%s", quarto));
+            System.out.println("Gostaria de mudar o status para qual?(Disponível, Manutenção, Limpeza, Reservado, Indisponível)");
+            String novoStatus = scanner.nextLine();
+
+            quarto.setStatus(novoStatus);
+
+            bancoDeDados.alteraQuarto(quarto);
         }
     }
 

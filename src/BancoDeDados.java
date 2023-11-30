@@ -135,6 +135,30 @@ public class BancoDeDados {
         return registro;
     }
 
+    public void alteraQuarto(Quarto quarto) {
+        String numero;
+
+        int inicio, fim, ultimo;
+        boolean achou = false;
+
+        StringBuffer memoria = memoriaQuarto;
+
+        inicio = 0;
+        while ((inicio != memoria.length()) && (!achou)) {
+            ultimo = memoria.indexOf("|", inicio);
+            numero = memoria.substring(inicio, ultimo);
+
+            fim = memoria.indexOf("\n", inicio);
+
+            if (Integer.parseInt(numero) == quarto.getNumero()) {
+                memoriaQuarto.replace(inicio, fim+1, quarto.toString());
+                achou = true;
+            }
+
+            inicio = fim + 1;  // continua procurando o código do quarto
+        }
+    }
+
     private void gravarQuarto() {
         try {
             BufferedWriter escrita = new BufferedWriter(new FileWriter(arquivoQuartos));
