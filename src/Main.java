@@ -53,7 +53,7 @@ public class Main {
                 alteraQuarto();
                 break;
             case 4:
-                System.out.println("Excluir Quarto");
+                excluiQuarto();
                 break;
             default:
                 System.out.println("Opção inválida");
@@ -110,6 +110,29 @@ public class Main {
             quarto.setStatus(novoStatus);
 
             bancoDeDados.alteraQuarto(quarto);
+        }
+    }
+
+    private static void excluiQuarto() {
+        System.out.println("Informe o número do quarto: ");
+        int numero = scanner.nextInt();
+        scanner.nextLine();
+
+        Quarto quarto = bancoDeDados.buscaQuarto(numero);
+
+        if(quarto == null) {
+            System.out.println("Quarto de número " + numero + " não esta cadastrado");
+        } else {
+            System.out.println(String.format("Encontramos o quarto:\n%s", quarto));
+            System.out.println("Deseja mesmo excluir o quarto encontrado? Digite S ou N");
+            char resposta = scanner.nextLine().toUpperCase().charAt(0);
+
+            if(resposta == 'S') {
+                bancoDeDados.excluiQuarto(numero);
+                System.out.println("Registro excluido.");
+            } else {
+                System.out.println("Operação Cancelada");
+            }
         }
     }
 

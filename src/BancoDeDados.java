@@ -151,11 +151,33 @@ public class BancoDeDados {
             fim = memoria.indexOf("\n", inicio);
 
             if (Integer.parseInt(numero) == quarto.getNumero()) {
-                memoriaQuarto.replace(inicio, fim+1, quarto.toString());
+                memoriaQuarto.replace(inicio, fim + 1, quarto.toString());
                 achou = true;
             }
 
             inicio = fim + 1;  // continua procurando o código do quarto
+        }
+    }
+
+    public void excluiQuarto(int numero) {
+        String numeroReg;
+        int inicio, fim, ultimo;
+        boolean achou = false;
+        if (memoriaQuarto.length() != 0) {   // n�o est� vazia
+            inicio = 0;   //inicio come�a na posi��o 0 da vari�vel memoria
+            while ((inicio != memoriaQuarto.length()) && (!achou)) {
+                ultimo = memoriaQuarto.indexOf("|", inicio);
+                numeroReg = memoriaQuarto.substring(inicio, ultimo);
+
+                fim = memoriaQuarto.indexOf("\n", inicio);
+                if (numero == Integer.parseInt(numeroReg)) {
+                    memoriaQuarto.delete(inicio, fim + 1);
+                    gravarQuarto();
+                    achou = true;
+                }
+
+                inicio = fim + 1;  // continua procurando o código do quarto
+            }
         }
     }
 
