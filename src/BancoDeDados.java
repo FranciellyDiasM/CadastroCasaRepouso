@@ -8,14 +8,18 @@ public class BancoDeDados {
     private String nomeArquivoQuartos = "quartos.txt";
     private String nomeArquivoPacientes = "pacientes.txt";
 
-
     private File arquivoQuartos = new File(diretorio, nomeArquivoQuartos);
     private File arquivoPacientes = new File(diretorio, nomeArquivoPacientes);
+
+    private StringBuffer memoriaQuarto = new StringBuffer();
+    private StringBuffer memoriaPaciente = new StringBuffer();
 
     public BancoDeDados() {
         criaDiretorioCasoNaoExista();
         criaArquivoQuartosCasoNaoExista();
         criaArquivoPacientesCasoNaoExista();
+        iniciaMemoriaQuarto();
+        iniciaMemoriaPaciente();
     }
 
     private void criaDiretorioCasoNaoExista() {
@@ -44,15 +48,49 @@ public class BancoDeDados {
         }
     }
 
-    public void insere(Quarto quarto) {
+    private void iniciaMemoriaQuarto() {
         try {
-            BufferedWriter escrita = new BufferedWriter(new FileWriter(arquivoQuartos, true));
-            escrita.write(quarto.toString());
-            escrita.flush();
-            escrita.close();
+            BufferedReader readerQuarto = new BufferedReader(new FileReader(arquivoQuartos));
+
+            String linha;
+            memoriaQuarto.delete(0, memoriaQuarto.length());
+            do {
+                linha = readerQuarto.readLine();
+                if (linha != null) {
+                    memoriaQuarto.append(linha + "\n");
+                }
+            } while (linha != null);
+            readerQuarto.close();
+        } catch (FileNotFoundException erro) {
+            System.out.println("\nArquivo n�o encontrado");
         } catch (Exception e) {
-            System.out.println("\nErro de gravacao!");
+            System.out.println("\nErro de Leitura!");
         }
+    }
+
+    private void iniciaMemoriaPaciente() {
+        try {
+            BufferedReader readerPaciente = new BufferedReader(new FileReader(arquivoPacientes));
+
+            String linha;
+            memoriaPaciente.delete(0, memoriaPaciente.length());
+            do {
+                linha = readerPaciente.readLine();
+                if (linha != null) {
+                    memoriaPaciente.append(linha + "\n");
+                }
+            } while (linha != null);
+            readerPaciente.close();
+        } catch (FileNotFoundException erro) {
+            System.out.println("\nArquivo n�o encontrado");
+        } catch (Exception e) {
+            System.out.println("\nErro de Leitura!");
+        }
+    }
+
+    public void insere(Quarto quarto) {
+        memoriaQuarto.append(quarto.toString());
+        gravarQuarto();
     }
 
     public Quarto buscaQuarto(int numeroQuarto) {
@@ -63,7 +101,7 @@ public class BancoDeDados {
         boolean achou = false;
         int procura;
 
-        StringBuffer memoria = carregarConteudo(arquivoQuartos);
+        StringBuffer memoria = memoriaQuarto;
 
         procura = numeroQuarto;
         inicio = 0;
@@ -97,22 +135,14 @@ public class BancoDeDados {
         return registro;
     }
 
-    private StringBuffer carregarConteudo(File arquivo) {
-        StringBuffer retorno = new StringBuffer();
+    private void gravarQuarto() {
         try {
-            BufferedReader arquivoEntrada = new BufferedReader(new FileReader(arquivo));
-            String linha = "";
-            do {
-                linha = arquivoEntrada.readLine();
-                if (linha != null) {
-                    retorno.append(linha + "\n");
-                }
-            } while (linha != null);
-            arquivoEntrada.close();
+            BufferedWriter escrita = new BufferedWriter(new FileWriter(arquivoQuartos));
+            escrita.write(memoriaQuarto.toString());
+            escrita.flush();
+            escrita.close();
         } catch (Exception e) {
-            System.out.println("\nErro de Leitura!");
+            System.out.println("\nErro de gravacao!");
         }
-
-        return retorno;
     }
 }
