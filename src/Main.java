@@ -211,6 +211,24 @@ public class Main {
     }
 
     private static void excluiPaciente() {
-        System.out.println("Excluir Paciente");
+        System.out.println("Informe o nome do paciente: ");
+        String nome = scanner.nextLine();
+
+        Paciente paciente = bancoDeDados.buscaPaciente(nome);
+
+        if (paciente == null) {
+            System.out.println("Paciente " + nome + " não está cadastrado");
+        } else {
+            System.out.println(String.format("Encontramos o paciente:\n%s", paciente.textoBonito()));
+            System.out.println("Deseja mesmo excluir o paciente encontrado? Digite S ou N");
+            char resposta = scanner.nextLine().toUpperCase().charAt(0);
+
+            if (resposta == 'S') {
+                bancoDeDados.excluiPaciente(nome);
+                System.out.println("Registro excluído.");
+            } else {
+                System.out.println("Operação Cancelada");
+            }
+        }
     }
 }

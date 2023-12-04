@@ -159,7 +159,7 @@ public class BancoDeDados {
         String numeroReg;
         int inicio, fim, ultimo;
         boolean achou = false;
-        inicio = 0;   //inicio come�a na posi��o 0 da vari�vel memoria
+        inicio = 0;
         while ((inicio != memoriaQuarto.length()) && (!achou)) {
             ultimo = memoriaQuarto.indexOf("|", inicio);
             numeroReg = memoriaQuarto.substring(inicio, ultimo);
@@ -239,6 +239,28 @@ public class BancoDeDados {
 
             if (nome.equalsIgnoreCase(paciente.getNome())) {
                 memoriaPaciente.replace(inicio, fim + 1, paciente.toString());
+                gravarPaciente();
+                achou = true;
+            }
+
+            inicio = fim + 1;  // continua procurando o nome do paciente
+        }
+    }
+
+    public void excluiPaciente(String nomePaciente) {
+        String nome;
+
+        int inicio, fim, ultimo;
+        boolean achou = false;
+
+        inicio = 0;
+        while ((inicio != memoriaPaciente.length()) && (!achou)) {
+            ultimo = memoriaPaciente.indexOf("|", inicio);
+            nome = memoriaPaciente.substring(inicio, ultimo);
+
+            fim = memoriaPaciente.indexOf("\n", inicio);
+            if (nome.equalsIgnoreCase(nomePaciente)) {
+                memoriaPaciente.delete(inicio, fim + 1);
                 gravarPaciente();
                 achou = true;
             }
