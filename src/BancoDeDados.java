@@ -114,10 +114,6 @@ public class BancoDeDados {
             tipo = memoria.substring(primeiro, ultimo);
 
             primeiro = ultimo + 1;
-            ultimo = memoria.indexOf("|", primeiro);
-            comodidade = memoria.substring(primeiro, ultimo);
-
-            primeiro = ultimo + 1;
             fim = memoria.indexOf("\n", primeiro);
             status = memoria.substring(primeiro, fim);
 

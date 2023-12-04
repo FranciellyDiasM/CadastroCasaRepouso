@@ -69,13 +69,10 @@ public class Main {
         System.out.println("Informe o tipo de quarto(Basico, UTI, PCD...)");
         String tipo = scanner.nextLine();
 
-        System.out.println("Informe as comidades(Wi-fi, Suite, TV, Frigobar)");
-        String comodidades = scanner.nextLine();
-
         System.out.println("Informe o status do quarto(Disponível, Manutenção, Limpeza, Reservado, Indisponível)");
         String status = scanner.nextLine();
 
-        Quarto quarto = new Quarto(numero, tipo, comodidades, status);
+        Quarto quarto = new Quarto(numero, tipo, status);
         bancoDeDados.insere(quarto);
     }
 
