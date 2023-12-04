@@ -179,7 +179,16 @@ public class Main {
     }
 
     private static void buscaPaciente() {
-        System.out.println("Buscar Paciente");
+        System.out.println("Informe o nome do paciente: ");
+        String nome = scanner.nextLine();
+
+        Paciente paciente = bancoDeDados.buscaPaciente(nome);
+
+        if (paciente == null) {
+            System.out.println("Paciente " + nome + " não está cadastrado");
+        } else {
+            System.out.println(paciente.textoBonito());
+        }
     }
 
     private static void alteraPaciente() {

@@ -53,6 +53,11 @@ public class Paciente {
         this.numeroQuarto = numeroQuarto;
     }
 
+    public String textoBonito() {
+        return String.format("Nome: %s\nAno de Nascimento: %s\nGênero: %s\nTelefone do Responsável: %s\nNúmero do Quarto: %s",
+                nome, anoNascimento, genero, telefoneResponsavel, numeroQuarto);
+    }
+
     @Override
     public String toString() {
         return String.format("%s|%s|%s|%s|%s\n", nome, anoNascimento, genero, telefoneResponsavel, numeroQuarto);

@@ -181,6 +181,49 @@ public class BancoDeDados {
         gravarPaciente();
     }
 
+    public Paciente buscaPaciente(String nomePaciente) {
+        Paciente registro = null;
+        String nome, anoNascimento, genero, telefoneResponsavel, numeroQuarto;
+
+        int inicio, fim, ultimo, primeiro;
+        boolean achou = false;
+        String procura = nomePaciente;
+
+        inicio = 0;
+        while ((inicio != memoriaPaciente.length()) && (!achou)) {
+            ultimo = memoriaPaciente.indexOf("|", inicio);
+            nome = memoriaPaciente.substring(inicio, ultimo);
+
+            primeiro = ultimo + 1;
+            ultimo = memoriaPaciente.indexOf("|", primeiro);
+            anoNascimento = memoriaPaciente.substring(primeiro, ultimo);
+
+            primeiro = ultimo + 1;
+            ultimo = memoriaPaciente.indexOf("|", primeiro);
+            genero = memoriaPaciente.substring(primeiro, ultimo);
+
+            primeiro = ultimo + 1;
+            ultimo = memoriaPaciente.indexOf("|", primeiro);
+            telefoneResponsavel = memoriaPaciente.substring(primeiro, ultimo);
+
+            primeiro = ultimo + 1;
+            fim = memoriaPaciente.indexOf("\n", primeiro);
+            numeroQuarto = memoriaPaciente.substring(primeiro, fim);
+
+            registro = new Paciente(nome, Integer.parseInt(anoNascimento), genero, telefoneResponsavel, Integer.parseInt(numeroQuarto));
+            if (procura.equalsIgnoreCase(registro.getNome())) {
+                achou = true;
+            }
+
+            inicio = fim + 1;  // continua procurando o nome do paciente
+        }
+        if (!achou) {
+            registro = null;
+        }
+
+        return registro;
+    }
+
     private void gravarQuarto() {
         try {
             BufferedWriter escrita = new BufferedWriter(new FileWriter(arquivoQuartos));
