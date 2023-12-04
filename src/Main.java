@@ -144,20 +144,36 @@ public class Main {
 
         switch (operacao) {
             case 1:
-                System.out.println("Inserir Paciente");
+                inserePaciente();
                 break;
             case 2:
-                System.out.println("Buscar Paciente");
+                buscaPaciente();
                 break;
             case 3:
-                System.out.println("Alterar Paciente");
+                alteraPaciente();
                 break;
             case 4:
-                System.out.println("Excluir Paciente");
+                excluiPaciente();
                 break;
             default:
                 System.out.println("Opção inválida");
                 break;
         }
+    }
+
+    private static void inserePaciente() {
+        System.out.println("Inserir Paciente");
+    }
+
+    private static void buscaPaciente() {
+        System.out.println("Buscar Paciente");
+    }
+
+    private static void alteraPaciente() {
+        System.out.println("Alterar Paciente");
+    }
+
+    private static void excluiPaciente() {
+        System.out.println("Excluir Paciente");
     }
 }
