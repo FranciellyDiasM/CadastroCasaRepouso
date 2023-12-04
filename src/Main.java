@@ -14,7 +14,7 @@ public class Main {
             System.out.println("2 - Paciente");
             System.out.println("0 - Sair");
 
-            opcao = scanner.nextInt();
+            opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
                 case 1:
@@ -40,7 +40,7 @@ public class Main {
         System.out.println("3 - Alterar Quarto");
         System.out.println("4 - Excluir Quarto");
 
-        int operacao = scanner.nextInt();
+        int operacao = Integer.parseInt(scanner.nextLine());
 
         switch (operacao) {
             case 1:
@@ -63,8 +63,7 @@ public class Main {
 
     private static void insereQuarto() {
         System.out.println("Informe o numero do quarto: ");
-        int numero = scanner.nextInt();
-        scanner.nextLine();  // corrige bug
+        int numero = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Informe o tipo de quarto(Basico, UTI, PCD...)");
         String tipo = scanner.nextLine();
@@ -78,8 +77,7 @@ public class Main {
 
     private static void buscaQuarto() {
         System.out.println("Informe o número do quarto: ");
-        int numero = scanner.nextInt();
-        scanner.nextLine();  // corrige bug
+        int numero = Integer.parseInt(scanner.nextLine());
 
         Quarto quarto = bancoDeDados.buscaQuarto(numero);
 
@@ -92,8 +90,7 @@ public class Main {
 
     private static void alteraQuarto() {
         System.out.println("Informe o número do quarto: ");
-        int numero = scanner.nextInt();
-        scanner.nextLine();  // corrige bug
+        int numero = Integer.parseInt(scanner.nextLine());
 
         Quarto quarto = bancoDeDados.buscaQuarto(numero);
 
@@ -112,8 +109,7 @@ public class Main {
 
     private static void excluiQuarto() {
         System.out.println("Informe o número do quarto: ");
-        int numero = scanner.nextInt();
-        scanner.nextLine();
+        int numero = Integer.parseInt(scanner.nextLine());
 
         Quarto quarto = bancoDeDados.buscaQuarto(numero);
 
@@ -140,7 +136,7 @@ public class Main {
         System.out.println("3 - Alterar Paciente");
         System.out.println("4 - Excluir Paciente");
 
-        int operacao = scanner.nextInt();
+        int operacao = Integer.parseInt(scanner.nextLine());
 
         switch (operacao) {
             case 1:
