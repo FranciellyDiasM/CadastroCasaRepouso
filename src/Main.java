@@ -158,7 +158,24 @@ public class Main {
     }
 
     private static void inserePaciente() {
-        System.out.println("Inserir Paciente");
+        System.out.println("Informe o nome do paciente: ");
+        String nome = scanner.nextLine();
+
+        System.out.println("Informe o ano de nascimento do paciente: ");
+        int anoNascimento = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Informe o gênero do paciente: ");
+        String genero = scanner.nextLine();
+
+        System.out.println("Informe o telefone do responsável pelo paciente: ");
+        String telefoneResponsavel = scanner.nextLine();
+
+        System.out.println("Informe o número do quarto do paciente: ");
+        int numeroQuarto = Integer.parseInt(scanner.nextLine());
+
+        Paciente paciente = new Paciente(nome, anoNascimento, genero, telefoneResponsavel, numeroQuarto);
+
+        bancoDeDados.inserePaciente(paciente);
     }
 
     private static void buscaPaciente() {

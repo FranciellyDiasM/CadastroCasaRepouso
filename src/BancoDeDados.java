@@ -175,10 +175,27 @@ public class BancoDeDados {
         }
     }
 
+    // Operacoes na classe paciente
+    public void inserePaciente(Paciente paciente) {
+        memoriaPaciente.append(paciente.toString());
+        gravarPaciente();
+    }
+
     private void gravarQuarto() {
         try {
             BufferedWriter escrita = new BufferedWriter(new FileWriter(arquivoQuartos));
             escrita.write(memoriaQuarto.toString());
+            escrita.flush();
+            escrita.close();
+        } catch (Exception e) {
+            System.out.println("\nErro de gravacao!");
+        }
+    }
+
+    private void gravarPaciente() {
+        try {
+            BufferedWriter escrita = new BufferedWriter(new FileWriter(arquivoPacientes));
+            escrita.write(memoriaPaciente.toString());
             escrita.flush();
             escrita.close();
         } catch (Exception e) {

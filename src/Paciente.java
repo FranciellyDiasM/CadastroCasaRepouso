@@ -5,6 +5,14 @@ public class Paciente {
     private String telefoneResponsavel;
     private int numeroQuarto;
 
+    public Paciente(String nome, int anoNascimento, String genero, String telefoneResponsavel, int numeroQuarto) {
+        this.nome = nome;
+        this.anoNascimento = anoNascimento;
+        this.genero = genero;
+        this.telefoneResponsavel = telefoneResponsavel;
+        this.numeroQuarto = numeroQuarto;
+    }
+
     public String getNome() {
         return nome;
     }
