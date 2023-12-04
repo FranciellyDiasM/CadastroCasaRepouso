@@ -224,6 +224,30 @@ public class BancoDeDados {
         return registro;
     }
 
+    public void alteraPaciente(Paciente paciente) {
+        String nome;
+
+        int inicio, fim, ultimo;
+        boolean achou = false;
+
+        inicio = 0;
+        while ((inicio != memoriaPaciente.length()) && (!achou)) {
+            ultimo = memoriaPaciente.indexOf("|", inicio);
+            nome = memoriaPaciente.substring(inicio, ultimo);
+
+            fim = memoriaPaciente.indexOf("\n", inicio);
+
+            if (nome.equalsIgnoreCase(paciente.getNome())) {
+                memoriaPaciente.replace(inicio, fim + 1, paciente.toString());
+                gravarPaciente();
+                achou = true;
+            }
+
+            inicio = fim + 1;  // continua procurando o nome do paciente
+        }
+    }
+
+    // Metodos de persistencia
     private void gravarQuarto() {
         try {
             BufferedWriter escrita = new BufferedWriter(new FileWriter(arquivoQuartos));

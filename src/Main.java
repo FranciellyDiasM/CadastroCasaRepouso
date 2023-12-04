@@ -192,7 +192,22 @@ public class Main {
     }
 
     private static void alteraPaciente() {
-        System.out.println("Alterar Paciente");
+        System.out.println("Informe o nome do paciente: ");
+        String nome = scanner.nextLine();
+
+        Paciente paciente = bancoDeDados.buscaPaciente(nome);
+
+        if (paciente == null) {
+            System.out.println("Paciente " + nome + " não está cadastrado");
+        } else {
+            System.out.println(String.format("Encontramos o paciente:\n%s", paciente.textoBonito()));
+            System.out.println("Gostaria de mudar o número do quarto para qual?");
+            int novoNumeroQuarto = Integer.parseInt(scanner.nextLine());
+
+            paciente.setNumeroQuarto(novoNumeroQuarto);
+
+            bancoDeDados.alteraPaciente(paciente);
+        }
     }
 
     private static void excluiPaciente() {
