@@ -73,7 +73,7 @@ public class Main {
         String status = scanner.nextLine();
 
         Quarto quarto = new Quarto(numero, tipo, status);
-        bancoDeDados.insere(quarto);
+        bancoDeDados.insereQuarto(quarto);
     }
 
     private static void buscaQuarto() {

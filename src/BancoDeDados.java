@@ -14,6 +14,7 @@ public class BancoDeDados {
     private StringBuffer memoriaQuarto = new StringBuffer();
     private StringBuffer memoriaPaciente = new StringBuffer();
 
+    // CONSTRUTOR sera chamado quando for instanciado (new BancoDeDados())
     public BancoDeDados() {
         criaDiretorioCasoNaoExista();
         criaArquivoQuartosCasoNaoExista();
@@ -22,6 +23,7 @@ public class BancoDeDados {
         iniciaMemoriaPaciente();
     }
 
+    // Metodos de preparacao
     private void criaDiretorioCasoNaoExista() {
         if (!diretorio.exists()) {
             diretorio.mkdirs();
@@ -88,34 +90,33 @@ public class BancoDeDados {
         }
     }
 
-    public void insere(Quarto quarto) {
+    // Operacoes na classe quarto
+    public void insereQuarto(Quarto quarto) {
         memoriaQuarto.append(quarto.toString());
         gravarQuarto();
     }
 
     public Quarto buscaQuarto(int numeroQuarto) {
         Quarto registro = null;
-        String numero, tipo, comodidade, status;
+        String numero, tipo, status;
 
         int inicio, fim, ultimo, primeiro;
         boolean achou = false;
         int procura;
 
-        StringBuffer memoria = memoriaQuarto;
-
         procura = numeroQuarto;
         inicio = 0;
-        while ((inicio != memoria.length()) && (!achou)) {
-            ultimo = memoria.indexOf("|", inicio);
-            numero = memoria.substring(inicio, ultimo);
+        while ((inicio != memoriaQuarto.length()) && (!achou)) {
+            ultimo = memoriaQuarto.indexOf("|", inicio);
+            numero = memoriaQuarto.substring(inicio, ultimo);
 
             primeiro = ultimo + 1;
-            ultimo = memoria.indexOf("|", primeiro);
-            tipo = memoria.substring(primeiro, ultimo);
+            ultimo = memoriaQuarto.indexOf("|", primeiro);
+            tipo = memoriaQuarto.substring(primeiro, ultimo);
 
             primeiro = ultimo + 1;
-            fim = memoria.indexOf("\n", primeiro);
-            status = memoria.substring(primeiro, fim);
+            fim = memoriaQuarto.indexOf("\n", primeiro);
+            status = memoriaQuarto.substring(primeiro, fim);
 
             registro = new Quarto(Integer.parseInt(numero), tipo, status);
             if (procura == registro.getNumero()) {
@@ -137,14 +138,12 @@ public class BancoDeDados {
         int inicio, fim, ultimo;
         boolean achou = false;
 
-        StringBuffer memoria = memoriaQuarto;
-
         inicio = 0;
-        while ((inicio != memoria.length()) && (!achou)) {
-            ultimo = memoria.indexOf("|", inicio);
-            numero = memoria.substring(inicio, ultimo);
+        while ((inicio != memoriaQuarto.length()) && (!achou)) {
+            ultimo = memoriaQuarto.indexOf("|", inicio);
+            numero = memoriaQuarto.substring(inicio, ultimo);
 
-            fim = memoria.indexOf("\n", inicio);
+            fim = memoriaQuarto.indexOf("\n", inicio);
 
             if (Integer.parseInt(numero) == quarto.getNumero()) {
                 memoriaQuarto.replace(inicio, fim + 1, quarto.toString());
@@ -160,21 +159,19 @@ public class BancoDeDados {
         String numeroReg;
         int inicio, fim, ultimo;
         boolean achou = false;
-        if (memoriaQuarto.length() != 0) {   // n�o est� vazia
-            inicio = 0;   //inicio come�a na posi��o 0 da vari�vel memoria
-            while ((inicio != memoriaQuarto.length()) && (!achou)) {
-                ultimo = memoriaQuarto.indexOf("|", inicio);
-                numeroReg = memoriaQuarto.substring(inicio, ultimo);
+        inicio = 0;   //inicio come�a na posi��o 0 da vari�vel memoria
+        while ((inicio != memoriaQuarto.length()) && (!achou)) {
+            ultimo = memoriaQuarto.indexOf("|", inicio);
+            numeroReg = memoriaQuarto.substring(inicio, ultimo);
 
-                fim = memoriaQuarto.indexOf("\n", inicio);
-                if (numero == Integer.parseInt(numeroReg)) {
-                    memoriaQuarto.delete(inicio, fim + 1);
-                    gravarQuarto();
-                    achou = true;
-                }
-
-                inicio = fim + 1;  // continua procurando o código do quarto
+            fim = memoriaQuarto.indexOf("\n", inicio);
+            if (numero == Integer.parseInt(numeroReg)) {
+                memoriaQuarto.delete(inicio, fim + 1);
+                gravarQuarto();
+                achou = true;
             }
+
+            inicio = fim + 1;  // continua procurando o código do quarto
         }
     }
 
