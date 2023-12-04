@@ -121,7 +121,7 @@ public class BancoDeDados {
             fim = memoria.indexOf("\n", primeiro);
             status = memoria.substring(primeiro, fim);
 
-            registro = new Quarto(Integer.parseInt(numero), tipo, comodidade, status);
+            registro = new Quarto(Integer.parseInt(numero), tipo, status);
             if (procura == registro.getNumero()) {
                 achou = true;
             }
@@ -152,6 +152,7 @@ public class BancoDeDados {
 
             if (Integer.parseInt(numero) == quarto.getNumero()) {
                 memoriaQuarto.replace(inicio, fim + 1, quarto.toString());
+                gravarQuarto();
                 achou = true;
             }
 
