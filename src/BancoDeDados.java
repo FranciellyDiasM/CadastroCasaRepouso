@@ -64,7 +64,7 @@ public class BancoDeDados {
             } while (linha != null);
             readerQuarto.close();
         } catch (FileNotFoundException erro) {
-            System.out.println("\nArquivo n�o encontrado");
+            System.out.println("\nArquivo nao encontrado");
         } catch (Exception e) {
             System.out.println("\nErro de Leitura!");
         }
@@ -84,7 +84,7 @@ public class BancoDeDados {
             } while (linha != null);
             readerPaciente.close();
         } catch (FileNotFoundException erro) {
-            System.out.println("\nArquivo n�o encontrado");
+            System.out.println("\nArquivo nao encontrado");
         } catch (Exception e) {
             System.out.println("\nErro de Leitura!");
         }
@@ -123,7 +123,7 @@ public class BancoDeDados {
                 achou = true;
             }
 
-            inicio = fim + 1;  // continua procurando o código do quarto
+            inicio = fim + 1; // continua procurando o codigo do quarto
         }
         if (!achou) {
             registro = null;
@@ -151,7 +151,7 @@ public class BancoDeDados {
                 achou = true;
             }
 
-            inicio = fim + 1;  // continua procurando o código do quarto
+            inicio = fim + 1; // continua procurando o codigo do quarto
         }
     }
 
@@ -171,7 +171,7 @@ public class BancoDeDados {
                 achou = true;
             }
 
-            inicio = fim + 1;  // continua procurando o código do quarto
+            inicio = fim + 1; // continua procurando o codigo do quarto
         }
     }
 
@@ -210,12 +210,13 @@ public class BancoDeDados {
             fim = memoriaPaciente.indexOf("\n", primeiro);
             numeroQuarto = memoriaPaciente.substring(primeiro, fim);
 
-            registro = new Paciente(nome, Integer.parseInt(anoNascimento), genero, telefoneResponsavel, Integer.parseInt(numeroQuarto));
+            registro = new Paciente(nome, Integer.parseInt(anoNascimento), genero, telefoneResponsavel,
+                    Integer.parseInt(numeroQuarto));
             if (procura.equalsIgnoreCase(registro.getNome())) {
                 achou = true;
             }
 
-            inicio = fim + 1;  // continua procurando o nome do paciente
+            inicio = fim + 1; // continua procurando o nome do paciente
         }
         if (!achou) {
             registro = null;
@@ -243,7 +244,7 @@ public class BancoDeDados {
                 achou = true;
             }
 
-            inicio = fim + 1;  // continua procurando o nome do paciente
+            inicio = fim + 1; // continua procurando o nome do paciente
         }
     }
 
@@ -265,7 +266,7 @@ public class BancoDeDados {
                 achou = true;
             }
 
-            inicio = fim + 1;  // continua procurando o nome do paciente
+            inicio = fim + 1; // continua procurando o nome do paciente
         }
     }
 
