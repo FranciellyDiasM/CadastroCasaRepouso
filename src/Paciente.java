@@ -54,7 +54,8 @@ public class Paciente {
     }
 
     public String textoBonito() {
-        return String.format("Nome: %s\nAno de Nascimento: %s\nGênero: %s\nTelefone do Responsável: %s\nNúmero do Quarto: %s",
+        return String.format(
+                "Nome: %s\nAno de Nascimento: %s\nGenero: %s\nTelefone do Responsavel: %s\nNumero do Quarto: %s\n",
                 nome, anoNascimento, genero, telefoneResponsavel, numeroQuarto);
     }
 
