@@ -3,6 +3,7 @@ public class Quarto {
     private String tipo;
     private String status;
 
+    // CONSTRUTOR
     public Quarto(int numero, String tipo, String status) {
         this.numero = numero;
         this.tipo = tipo;
@@ -34,7 +35,7 @@ public class Quarto {
     }
 
     public String textoBonito() {
-        return String.format("Número: %s\nTipo: %s\nStatus: %s", numero, tipo, status);
+        return String.format("Numero: %s\nTipo: %s\nStatus: %s\n", numero, tipo, status);
     }
 
     @Override
