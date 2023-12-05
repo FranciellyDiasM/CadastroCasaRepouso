@@ -132,6 +132,41 @@ public class BancoDeDados {
         return registro;
     }
 
+    public Quarto[] buscaQuartos() {
+        if (memoriaQuarto.length() == 0) {
+            return new Quarto[0];
+        }
+
+        int quantidadeLinhas = memoriaQuarto.toString().split("\n").length;
+        Quarto[] quartos = new Quarto[quantidadeLinhas];
+
+        Quarto registro = null;
+        String numero, tipo, status;
+
+        int inicio, fim, ultimo, primeiro;
+
+        inicio = 0;
+        for (int i = 0; i < quantidadeLinhas; i++) {
+            ultimo = memoriaQuarto.indexOf("|", inicio);
+            numero = memoriaQuarto.substring(inicio, ultimo);
+
+            primeiro = ultimo + 1;
+            ultimo = memoriaQuarto.indexOf("|", primeiro);
+            tipo = memoriaQuarto.substring(primeiro, ultimo);
+
+            primeiro = ultimo + 1;
+            fim = memoriaQuarto.indexOf("\n", primeiro);
+            status = memoriaQuarto.substring(primeiro, fim);
+
+            registro = new Quarto(Integer.parseInt(numero), tipo, status);
+            quartos[i] = registro;
+
+            inicio = fim + 1; // continua procurando o cÃ³digo do quarto
+        }
+
+        return quartos;
+    }
+
     public void alteraQuarto(Quarto quarto) {
         String numero;
 
@@ -268,6 +303,54 @@ public class BancoDeDados {
 
             inicio = fim + 1; // continua procurando o nome do paciente
         }
+    }
+
+    public Paciente[] buscaPaciente() {
+        if (memoriaPaciente.length() == 0) {
+            return new Paciente[0];
+        }
+
+        int quantidadeLinhas = memoriaPaciente.toString().split("\n").length;
+        Paciente[] pacientes = new Paciente[quantidadeLinhas];
+
+        Paciente registro = null;
+        String nome, anoNascimento, genero, telefoneResponsavel, numeroQuarto;
+
+        int inicio, fim, ultimo, primeiro;
+
+        inicio = 0;
+        for (int i = 0; i < quantidadeLinhas; i++) {
+            ultimo = memoriaPaciente.indexOf("|", inicio);
+            nome = memoriaPaciente.substring(inicio, ultimo);
+
+            primeiro = ultimo + 1;
+            ultimo = memoriaPaciente.indexOf("|", primeiro);
+            anoNascimento = memoriaPaciente.substring(primeiro, ultimo);
+
+            primeiro = ultimo + 1;
+            ultimo = memoriaPaciente.indexOf("|", primeiro);
+            genero = memoriaPaciente.substring(primeiro, ultimo);
+
+            primeiro = ultimo + 1;
+            ultimo = memoriaPaciente.indexOf("|", primeiro);
+            telefoneResponsavel = memoriaPaciente.substring(primeiro, ultimo);
+
+            primeiro = ultimo + 1;
+            fim = memoriaPaciente.indexOf("\n", primeiro);
+            numeroQuarto = memoriaPaciente.substring(primeiro, fim);
+
+            registro = new Paciente(nome, Integer.parseInt(anoNascimento), genero, telefoneResponsavel,
+                    Integer.parseInt(numeroQuarto));
+            pacientes[i] = registro;
+
+            inicio = fim + 1; // continua procurando o cÃ³digo do quarto
+        }
+
+        return pacientes;
+    }
+
+    public boolean estaVazio() {
+        return memoriaQuarto.length() == 0 && memoriaPaciente.length() == 0;
     }
 
     // Metodos de persistencia
